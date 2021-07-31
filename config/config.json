@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "Comptable",
-    "host": "127.0.0.1",
+    "username": "5j7esVNvxk",
+    "password": "eX4yT9sYhe",
+    "database": "5j7esVNvxk",
+    "host": "remotemysql.com",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
+    "username": "5j7esVNvxk",
+    "password": "eX4yT9sYhe",
+    "database": "5j7esVNvxk",
+    "host": "remotemysql.com",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "5j7esVNvxk",
+    "password": "eX4yT9sYhe",
+    "database": "5j7esVNvxk",
+    "host": "remotemysql.com",
     "dialect": "mysql"
   }
 }
