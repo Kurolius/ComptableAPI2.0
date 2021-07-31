@@ -163,7 +163,7 @@ module.exports = {
         
         return __ents
       },
-    async getMyEnt(Uid) { 
+    async getThisEnt(Uid) { 
         let __ents = await User.findOne({
         where: {
             id : Uid
@@ -177,7 +177,7 @@ module.exports = {
         return __ents
       },
     async updateEnt(entreprise) {
-        const __entreprise = await this.getMyEnt(entreprise.id)
+        const __entreprise = await this.getThisEnt(entreprise.id)
         if (__entreprise == null) return "can't update entreprise"
         if(entreprise.listWithNomAndPathCin){
             var listNomPath = "" 
