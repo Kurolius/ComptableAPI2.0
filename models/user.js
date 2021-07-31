@@ -32,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
     listGerant: DataTypes.STRING,
     sectActi: DataTypes.STRING,
     capital: DataTypes.STRING,
-    validationComptable: DataTypes.STRING
+    validationComptable: DataTypes.STRING,
+    role:DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',
