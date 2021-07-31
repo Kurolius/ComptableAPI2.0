@@ -8,9 +8,9 @@ router.get('/:id', async function(req, res, next) {
 router.put('/update', async function(req, res, next) {
     const id = req.body.id
     const token = req.body.token
-    const flag1 = await clientsRepo.verifToken(id,token)
+    const flag1 = await usersRepo.verifToken(id,token)
     if(flag1){
-        const flag2 = await clientsRepo.verifAdminRight(id,token)
+        const flag2 = await usersRepo.verifAdminRight(id,token)
         if(flag2){
             let paperAdv = {}
             paperAdv.UserId = req.body.UserId

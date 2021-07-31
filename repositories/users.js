@@ -1,4 +1,6 @@
 const { User } = require('../models')
+const { PaperAdvancement } = require('../models')
+const paperAdv = require('../repositories/paperAdvancements')
 const moment = require('moment')
 var CryptoJS = require("crypto-js");
 var md5 = require('md5');
@@ -87,16 +89,20 @@ module.exports = {
         if(count != 0){
             const __user = await this.getUserByEmail(usr.email)
             if (__user == null) return "can't update user"
-            let newClt = {}
-            newClt.password = md5(usr.newpassword) 
+            let newusr = {}
+            newusr.password = md5(usr.newpassword) 
             try{
-            const updated = await User.update(usr, {
+            const updated = await User.update(newusr, {
                 where: {
                 id: __user.id
                 }
             });
-            if (updated == 1) return usr;
-            else throw new Error()
+            if (updated == 1){ 
+                let newtoken = {}
+                newtoken.email= __user.email
+                newtoken.password= usr.newpassword
+                return await this.verifUser(newtoken);
+            }else throw new Error()
             } catch(error){
             return "can't update this user"
             }
@@ -140,7 +146,8 @@ module.exports = {
                 id: idu,
                 password: originalText 
               
-            }
+            },
+            attributes:['id','role']
           });
           if(compte.role == "admin"){
               return true
@@ -170,10 +177,8 @@ module.exports = {
         },
         attributes: ['id','prenom','nom', 'nomE', 'typeE', 'nbrAssocies','listWithNomAndPathCin','listGerant','sectActi', 'capital', 'validationComptable','createdAt','updatedAt']
         });
-        if(__ents){
-            __ents.listWithNomAndPathCin =__ents.listWithNomAndPathCin.toString().split(";")
-            __ents.listGerant =__ents.listGerant.toString().split(";")
-        }
+        if(__ents.listWithNomAndPathCin) __ents.listWithNomAndPathCin =__ents.listWithNomAndPathCin.toString().split(";")
+        if(__ents.listGerant) __ents.listGerant =__ents.listGerant.toString().split(";")
         return __ents
       },
     async updateEnt(entreprise) {
@@ -214,6 +219,7 @@ module.exports = {
     },
     async ValideENT(id){
         let entreprise ={}
+        entreprise.id = id
         entreprise.validationComptable = "valide"
         const __rep = this.updateEnt(entreprise)
         var  count= await PaperAdvancement.count({
@@ -228,8 +234,8 @@ module.exports = {
                 __paperAdv.advancement = "en cours"
                 for(i = 1; i <= 9; i++){
                     __paperAdv.paperId = i
+                    console.log(__paperAdv)
                     paperAdv.addPaperAdv(__paperAdv) 
-                   
                 }
             } catch(error){
                 return "there is a problem please contact an admin"

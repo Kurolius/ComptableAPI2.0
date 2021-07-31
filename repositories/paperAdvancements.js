@@ -1,6 +1,6 @@
 const { PaperAdvancement } = require('../models')
 const { Paper } = require('../models')
-const { User } = require('../models')
+
 const moment = require('moment')
 module.exports = {
     async getMypaper(id) {

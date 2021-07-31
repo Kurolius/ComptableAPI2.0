@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const usersRepo = require('../repositories/users')
 const multer = require('multer');
-router.get('/:id', async function(req, res, next) {
+router.get('/user/:id', async function(req, res, next) {
   res.send(await usersRepo.getUserdata(req.params.id));
 });
 
@@ -27,14 +27,21 @@ router.post('/signup', async function(req, res, next) {
   });
 
   router.put('/update', async function(req, res, next) {
-    let user = {}
-    user.prenom = req.body.prenom
-    user.nom = req.body.nom
-    user.email = req.body.email
-    user.phone = req.body.phone
-    user.bDate = req.body.bDate
-    user.role = req.body.role
-    res.send(await usersRepo.updateUser(user));
+    const id = req.body.id
+    const token = req.body.token
+    const flag = await usersRepo.verifToken(id,token)
+    if(flag){
+      let user = {}
+      user.prenom = req.body.prenom
+      user.nom = req.body.nom
+      user.email = req.body.email
+      user.phone = req.body.phone
+      user.bDate = req.body.bDate
+      user.role = req.body.role
+      res.send(await usersRepo.updateUser(user));
+    }else{
+      res.send("authentification error")
+    }
   });
 
   router.put('/changepass', async function(req, res, next) {
@@ -78,11 +85,12 @@ router.post('/signup', async function(req, res, next) {
   router.post('/valide', async function(req, res, next) {
     const id = req.body.id
     const token = req.body.token
+    const idAV = req.body.idAV
     const flag1 = await usersRepo.verifToken(id,token)
     if(flag1){
       const flag2 = await usersRepo.verifAdminRight(id,token)
       if(flag2){
-        res.send(await usersRepo.ValideENT(req.body.id));
+        res.send(await usersRepo.ValideENT(idAV));
       }else{
         res.send("you are not an admin")
       }
@@ -106,7 +114,7 @@ router.post('/signup', async function(req, res, next) {
       entreprise.sectActi = req.body.sectActi
       entreprise.capital = req.body.capital
       entreprise.validationComptable = "en cours"
-      res.send(await usersRepo.addEnt(entreprise));
+      res.send(await usersRepo.updateEnt(entreprise));
     }else{
       res.send("authentification error")
     }
