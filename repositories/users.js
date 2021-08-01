@@ -164,8 +164,9 @@ module.exports = {
         });
         
         __ents.forEach(element => {
-            element.listWithNomAndPathCin =element.listWithNomAndPathCin.toString().split(";")
-            element.listGerant =element.listGerant.toString().split(";")
+
+            if( element.listWithNomAndPathCin) element.listWithNomAndPathCin =element.listWithNomAndPathCin.toString().split(";")
+            if(element.listGerant) element.listGerant =element.listGerant.toString().split(";")
         });
         
         return __ents
