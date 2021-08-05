@@ -36,8 +36,8 @@ router.post('/signup', async function(req, res, next) {
       user.nom = req.body.nom
       user.email = req.body.email
       user.phone = req.body.phone
-      user.bDate = req.body.bDate
-      user.role = req.body.role
+      //user.bDate = req.body.bDate
+      //user.role = req.body.role
       res.send(await usersRepo.updateUser(user));
     }else{
       res.send("authentification error")
