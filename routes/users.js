@@ -26,6 +26,18 @@ router.post('/signup', async function(req, res, next) {
     res.send(await usersRepo.verifUser(user))
   });
 
+  router.post('/signin/admin', async function(req, res, next) {
+    let user = {}
+    user.email = req.body.email
+    user.password = req.body.password
+    const flag = await usersRepo.verifAdminRightWithPass(user)
+    if(flag){
+      res.send(await usersRepo.verifUser(user))
+    }else{
+      res.send("you are not an admin")
+    }
+  });
+
   router.put('/update', async function(req, res, next) {
     const id = req.body.id
     const token = req.body.token

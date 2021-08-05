@@ -155,7 +155,21 @@ module.exports = {
           return false
     },
 
-
+    async verifAdminRightWithPass(usr){
+        var compte= await User.findOne({
+            where: {
+              
+                email: usr.email,
+                password: md5(usr.password)
+              
+            },
+            attributes:['id','role']
+          });
+          if(compte.role == "admin"){
+              return true
+          }
+          return false
+    },
 
 
     async getAllEnts() { 
