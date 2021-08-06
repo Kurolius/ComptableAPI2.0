@@ -9,8 +9,10 @@ router.get('/user/:id', async function(req, res, next) {
 router.post('/signup', async function(req, res, next) {
     let user = {}
     user.prenom = req.body.prenom
+    user.prenom = user.prenom[0].toUpperCase() + user.prenom.slice(1).toLowerCase()
     user.nom = req.body.nom
-    user.email = req.body.email
+    user.nom = user.nom[0].toUpperCase() + user.nom.slice(1).toLowerCase()
+    user.email = req.body.email.toLowerCase()
     user.phone = req.body.phone
     user.password = req.body.password
     user.bDate = req.body.bDate
@@ -21,14 +23,14 @@ router.post('/signup', async function(req, res, next) {
 
   router.post('/signin', async function(req, res, next) {
     let user = {}
-    user.email = req.body.email
+    user.email = req.body.email.toLowerCase()
     user.password = req.body.password
     res.send(await usersRepo.verifUser(user))
   });
 
   router.post('/signin/admin', async function(req, res, next) {
     let user = {}
-    user.email = req.body.email
+    user.email = req.body.email.toLowerCase()
     user.password = req.body.password
     const flag = await usersRepo.verifAdminRightWithPass(user)
     if(flag){
@@ -44,9 +46,10 @@ router.post('/signup', async function(req, res, next) {
     const flag = await usersRepo.verifToken(id,token)
     if(flag){
       let user = {}
-      user.prenom = req.body.prenom
+      user.prenom = user.prenom[0].toUpperCase() + user.prenom.slice(1).toLowerCase()
       user.nom = req.body.nom
-      user.email = req.body.email
+      user.nom = user.nom[0].toUpperCase() + user.nom.slice(1).toLowerCase()
+      user.email = req.body.email.toLowerCase()
       user.phone = req.body.phone
       user.bDate = req.body.bDate
       user.role = req.body.role
@@ -58,7 +61,7 @@ router.post('/signup', async function(req, res, next) {
 
   router.put('/changepass', async function(req, res, next) {
     let user = {}
-    user.email = req.body.email
+    user.email = req.body.email.toLowerCase()
     user.oldpassword = req.body.oldpassword
     user.newpassword = req.body.newpassword
     res.send(await usersRepo.changepass(user));
@@ -69,8 +72,8 @@ router.post('/signup', async function(req, res, next) {
     const token = req.body.token
     const flag = await usersRepo.verifToken(id,token)
     if(flag){
-    let user= req.body.email
-    res.send(await usersRepo.deleteClient(user));
+    let user= req.body.email.toLowerCase()
+    res.send(await usersRepo.deleteUser(user));
     }else{
       res.send("authentification error")
     }
