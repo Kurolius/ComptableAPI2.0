@@ -205,12 +205,14 @@ module.exports = {
                 listNomPath = listNomPath + s + ";"
             });
         }
+        listNomPath=listNomPath.slice(0, -1)
         if(entreprise.listGerant){
             var listG = ""
             entreprise.listGerant.forEach(s=>{
                 listG = listG + s + ";"
             });
         }
+        listGerant=listGerant.slice(0, -1)
         let newEntData = {}
         newEntData.nomE = entreprise.nomE
         newEntData.typeE = entreprise.typeE
