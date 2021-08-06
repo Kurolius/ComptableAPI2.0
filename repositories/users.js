@@ -185,7 +185,7 @@ module.exports = {
                 element.listAssocies.forEach(element => {
                     string = string + element + " / "
                 })
-                string = string.slice(0, -1)
+                string = string.slice(0, -3)
                 element.listAssocies = string
             }
             if(element.listGerant){
@@ -194,7 +194,7 @@ module.exports = {
                 element.listGerant.forEach(element => {
                     string = string + element + " / "
                 })
-                string = string.slice(0, -1)
+                string = string.slice(0, -3)
                 element.listGerant = string
             }
         });
@@ -214,7 +214,7 @@ module.exports = {
             __ents.listAssocies.forEach(element => {
                     string = string + element + " / "
                 })
-                string = string.slice(0, -1)
+                string = string.slice(0, -3)
                 __ents.listAssocies = string
         }
         if(__ents.listGerant){
@@ -223,7 +223,7 @@ module.exports = {
                 __ents.listGerant.forEach(element => {
                     string = string + element + " / "
                 })
-                string = string.slice(0, -1)
+                string = string.slice(0, -3)
                 __ents.listGerant = string
         }
         return __ents
