@@ -111,7 +111,7 @@ router.post('/signup', async function(req, res, next) {
     }
   });
   
-  router.post('/ent/create',async function(req, res, next) {
+  router.post('/ent/create',upload.array('CinImg',2000),async function(req, res, next) {
     const id = req.body.id
     const token = req.body.token
     const flag = await usersRepo.verifToken(id,token)
@@ -121,7 +121,13 @@ router.post('/signup', async function(req, res, next) {
       entreprise.nomE = req.body.nomE
       entreprise.typeE = req.body.typeE
       entreprise.nbrAssocies = req.body.nbrAssocies
-      entreprise.listWithNomAndPathCin = req.body.listWithNomAndPathCin
+      const __lwnapc = req.body.listWithNomAndPathCin
+      let list =[]
+      __lwnapc.forEach(element => {
+        list.push(element)
+        list.push("./CinImg/"+element+".jpeg")
+      });
+      entreprise.listWithNomAndPathCin = list
       entreprise.listGerant = req.body.listGerant
       entreprise.sectActi = req.body.sectActi
       entreprise.capital = req.body.capital
@@ -130,14 +136,6 @@ router.post('/signup', async function(req, res, next) {
     }else{
       res.send("authentification error")
     }
-    });
-  
-    router.post('/ent/addCinImg',upload.single('CinImg'),async function(req, res, next) {
-      console.log(JSON.stringify(req.file))
-      var response = '<a href="/">Home</a><br>'
-      response += "Files uploaded successfully.<br>"
-      response += `<img src="${req.file.path}" /><br>`
-      return res.send(response)
     });
   
     router.put('/ent/update', async function(req, res, next) {
