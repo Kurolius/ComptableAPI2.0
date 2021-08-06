@@ -174,12 +174,12 @@ module.exports = {
 
     async getAllEnts() { 
         let __ents = await User.findAll({
-        attributes: ['id','prenom','nom', 'nomE', 'typeE', 'nbrAssocies','listWithNomAndPathCin','listGerant','sectActi', 'capital', 'validationComptable','createdAt','updatedAt']
+        attributes: ['id','prenom','nom', 'nomE', 'typeE', 'nbrAssocies','listAssocies','listGerant','sectActi', 'capital', 'validationComptable','createdAt','updatedAt']
         });
         
         __ents.forEach(element => {
 
-            if( element.listWithNomAndPathCin) element.listWithNomAndPathCin =element.listWithNomAndPathCin.toString().split(";")
+            if( element.listAssocies) element.listAssocies =element.listAssocies.toString().split(";")
             if(element.listGerant) element.listGerant =element.listGerant.toString().split(";")
         });
         
@@ -190,18 +190,18 @@ module.exports = {
         where: {
             id : Uid
         },
-        attributes: ['id','prenom','nom', 'nomE', 'typeE', 'nbrAssocies','listWithNomAndPathCin','listGerant','sectActi', 'capital', 'validationComptable','createdAt','updatedAt']
+        attributes: ['id','prenom','nom', 'nomE', 'typeE', 'nbrAssocies','listAssocies','listGerant','sectActi', 'capital', 'validationComptable','createdAt','updatedAt']
         });
-        if(__ents.listWithNomAndPathCin) __ents.listWithNomAndPathCin =__ents.listWithNomAndPathCin.toString().split(";")
+        if(__ents.listAssocies) __ents.listAssocies =__ents.listAssocies.toString().split(";")
         if(__ents.listGerant) __ents.listGerant =__ents.listGerant.toString().split(";")
         return __ents
       },
     async updateEnt(entreprise) {
         const __entreprise = await this.getThisEnt(entreprise.id)
         if (__entreprise == null) return "can't update entreprise"
-        if(entreprise.listWithNomAndPathCin){
+        if(entreprise.listAssocies){
             var listNomPath = "" 
-            entreprise.listWithNomAndPathCin.forEach(s=>{
+            entreprise.listAssocies.forEach(s=>{
                 listNomPath = listNomPath + s + ";"
             });
         }
@@ -215,7 +215,7 @@ module.exports = {
         newEntData.nomE = entreprise.nomE
         newEntData.typeE = entreprise.typeE
         newEntData.nbrAssocies = entreprise.nbrAssocies
-        newEntData.listWithNomAndPathCin = listNomPath
+        newEntData.listAssocies = listNomPath
         newEntData.listGerant = listG
         newEntData.sectActi = entreprise.sectActi
         newEntData.capital = entreprise.capital

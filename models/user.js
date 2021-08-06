@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     nomE: DataTypes.STRING,
     typeE: DataTypes.STRING,
     nbrAssocies: DataTypes.INTEGER,
-    listWithNomAndPathCin: DataTypes.STRING,
+    listAssocies: DataTypes.STRING,
     listGerant: DataTypes.STRING,
     sectActi: DataTypes.STRING,
     capital: DataTypes.STRING,

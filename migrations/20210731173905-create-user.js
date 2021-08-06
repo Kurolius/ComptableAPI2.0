@@ -37,7 +37,7 @@ module.exports = {
       nbrAssocies: {
         type: Sequelize.STRING
       },
-      listWithNomAndPathCin: {
+      listAssocies: {
         type: Sequelize.STRING
       },
       listGerant: {

@@ -121,13 +121,7 @@ router.post('/signup', async function(req, res, next) {
       entreprise.nomE = req.body.nomE
       entreprise.typeE = req.body.typeE
       entreprise.nbrAssocies = req.body.nbrAssocies
-      const __lwnapc = req.body.listWithNomAndPathCin
-      let list =[]
-      __lwnapc.forEach(element => {
-        list.push(element)
-        list.push("./CinImg/"+element+".jpeg")
-      });
-      entreprise.listWithNomAndPathCin = list
+      entreprise.listAssocies = req.body.listAssocies
       entreprise.listGerant = req.body.listGerant
       entreprise.sectActi = req.body.sectActi
       entreprise.capital = req.body.capital
@@ -148,7 +142,7 @@ router.post('/signup', async function(req, res, next) {
         entreprise.nomE = req.body.nomE
         entreprise.typeE = req.body.typeE
         entreprise.nbrAssocies = req.body.nbrAssocies
-        entreprise.listWithNomAndPathCin = req.body.listWithNomAndPathCin
+        entreprise.listAssocies = req.body.listAssocies
         entreprise.listGerant = req.body.listGerant
         entreprise.sectActi = req.body.sectActi
         entreprise.capital = req.body.capital
