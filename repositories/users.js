@@ -197,6 +197,11 @@ module.exports = {
                 string = string.slice(0, -3)
                 element.listGerant = string
             }
+            element.createdAt = element.createdAt.toString().split("T")
+            element.createdAt = element.createdAt[0]
+            element.updatedAt = element.updatedAt.toString().split("T")
+            element.updatedAt = element.updatedAt[0]
+            
         });
         
         return __ents
@@ -226,6 +231,10 @@ module.exports = {
                 string = string.slice(0, -3)
                 __ents.listGerant = string
         }
+        __ents.createdAt = __ents.createdAt.toString().split("T")
+        __ents.createdAt = __ents.createdAt[0]
+        __ents.updatedAt = __ents.updatedAt.toString().split("T")
+        __ents.updatedAt = __ents.updatedAt[0]
         return __ents
       },
     async updateEnt(entreprise) {
