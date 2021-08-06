@@ -179,8 +179,24 @@ module.exports = {
         
         __ents.forEach(element => {
 
-            if( element.listAssocies) element.listAssocies =element.listAssocies.toString().split(";")
-            if(element.listGerant) element.listGerant =element.listGerant.toString().split(";")
+            if( element.listAssocies){
+                element.listAssocies =element.listAssocies.toString().split(";")
+                let string = ""
+                element.listAssocies.forEach(element => {
+                    string = string + element + " / "
+                })
+                string = string.slice(0, -1)
+                element.listAssocies = string
+            }
+            if(element.listGerant){
+                element.listGerant = element.listGerant.toString().split(";")
+                let string = ""
+                element.listAssocies.forEach(element => {
+                    string = string + element + " / "
+                })
+                string = string.slice(0, -1)
+                element.listGerant = string
+            }
         });
         
         return __ents
@@ -192,8 +208,24 @@ module.exports = {
         },
         attributes: ['id','prenom','nom', 'nomE', 'typeE', 'nbrAssocies','listAssocies','listGerant','sectActi', 'capital', 'validationComptable','createdAt','updatedAt']
         });
-        if(__ents.listAssocies) __ents.listAssocies =__ents.listAssocies.toString().split(";")
-        if(__ents.listGerant) __ents.listGerant =__ents.listGerant.toString().split(";")
+        if(__ents.listAssocies){ 
+            __ents.listAssocies =__ents.listAssocies.toString().split(";")
+            let string = ""
+            __ents.listAssocies.forEach(element => {
+                    string = string + element + " / "
+                })
+                string = string.slice(0, -1)
+                __ents.listAssocies = string
+        }
+        if(__ents.listGerant){
+            __ents.listGerant = __ents.listGerant.toString().split(";")
+                let string = ""
+                __ents.listAssocies.forEach(element => {
+                    string = string + element + " / "
+                })
+                string = string.slice(0, -1)
+                __ents.listGerant = string
+        }
         return __ents
       },
     async updateEnt(entreprise) {
