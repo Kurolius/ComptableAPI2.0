@@ -191,7 +191,7 @@ module.exports = {
             if(element.listGerant){
                 element.listGerant = element.listGerant.toString().split(";")
                 let string = ""
-                element.listAssocies.forEach(element => {
+                element.listGerant.forEach(element => {
                     string = string + element + " / "
                 })
                 string = string.slice(0, -1)
@@ -220,7 +220,7 @@ module.exports = {
         if(__ents.listGerant){
             __ents.listGerant = __ents.listGerant.toString().split(";")
                 let string = ""
-                __ents.listAssocies.forEach(element => {
+                __ents.listGerant.forEach(element => {
                     string = string + element + " / "
                 })
                 string = string.slice(0, -1)
