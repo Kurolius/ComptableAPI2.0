@@ -236,10 +236,11 @@ module.exports = {
                 string = string.slice(0, -3)
                 __ents.listGerant = string
         }
-        __ents.createdAt = __ents.createdAt.toString().split("T")
-        __ents.createdAt = __ents.createdAt[0]
-        __ents.updatedAt = __ents.updatedAt.toString().split("T")
-        __ents.updatedAt = __ents.updatedAt[0]
+        let date = ""
+        date = __ents.createdAt.toString().split("T")
+        __ents.createdAt = date[0]
+        date = __ents.updatedAt.toString().split("T")
+        __ents.updatedAt = date[0]
         return __ents
       },
     async updateEnt(entreprise) {
