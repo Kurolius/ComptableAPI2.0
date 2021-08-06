@@ -49,11 +49,20 @@ module.exports = {
                 },
                 attributes: ['id','prenom','nom', 'email', 'phone','bDate', 'role','createdAt','updatedAt']
             });
-            user.createdAt = user.createdAt.toString().split("T")
-            user.createdAt = user.createdAt[0]
-            user.updatedAt = user.updatedAt.toString().split("T")
-            user.updatedAt = user.updatedAt[0]
-            return user
+            let finaluser = {}
+            finaluser.id = user.id
+            finaluser.prenom = user.prenom
+            finaluser.nom = user.nom
+            finaluser.email = user.email
+            finaluser.phone = user.phone
+            let date = user.bDate.toDateString()
+            finaluser.bDate = date
+            finaluser.role = user.role
+            date = user.createdAt.toDateString()
+            finaluser.createdAt = date
+            date = user.updatedAt.toDateString()
+            finaluser.updatedAt = date
+            return finaluser
             },
     async addUser(usr) {
         const created = await User.create({prenom: usr.prenom, nom: usr.nom , email: usr.email, phone: usr.phone, bDate: usr.bDate,
@@ -202,11 +211,10 @@ module.exports = {
                 string = string.slice(0, -3)
                 element.listGerant = string
             }
-            element.createdAt = element.createdAt.toString().split("T")
-            element.createdAt = element.createdAt[0]
-            element.updatedAt = element.updatedAt.toString().split("T")
-            element.updatedAt = element.updatedAt[0]
-            
+            let date = element.createdAt.toDateString()
+            element.createdAt = date
+            date = element.updatedAt.toDateString()
+            element.updatedAt = date
         });
         
         return __ents
@@ -236,12 +244,24 @@ module.exports = {
                 string = string.slice(0, -3)
                 __ents.listGerant = string
         }
-        let date = ""
-        date = __ents.createdAt.toString().split("T")
-        __ents.createdAt = date[0]
-        date = __ents.updatedAt.toString().split("T")
-        __ents.updatedAt = date[0]
-        return __ents
+        let ent ={}
+        ent.id = __ents.id
+        ent.prenom = __ents.prenom
+        ent.nom = __ents.nom
+        ent.nomE = __ents.nomE
+        ent.typeE = __ents.typeE
+        ent.nbrAssocies = __ents.nbrAssocies
+        ent.listAssocies = __ents.listAssocies
+        ent.listGerant = __ents.listGerant
+        ent.sectActi = __ents.sectActi
+        ent.capital = __ents.capital
+        ent.validationComptable = __ents.validationComptable
+        let date = __ents.createdAt.toDateString()
+        ent.createdAt = date
+        date = __ents.updatedAt.toDateString()
+        ent.updatedAt = date
+        
+        return ent
       },
     async updateEnt(entreprise) {
         const __entreprise = await this.getThisEnt(entreprise.id)
