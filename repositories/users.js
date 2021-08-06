@@ -43,12 +43,17 @@ module.exports = {
         });
         },
         async getUserdata(uid) { 
-            return await User.findOne({
+            let user = await User.findOne({
                 where: {       
                 id:uid 
                 },
                 attributes: ['id','prenom','nom', 'email', 'phone','bDate', 'role','createdAt','updatedAt']
             });
+            user.createdAt = user.createdAt.toString().split("T")
+            user.createdAt = user.createdAt[0]
+            user.updatedAt = user.updatedAt.toString().split("T")
+            user.updatedAt = user.updatedAt[0]
+            return user
             },
     async addUser(usr) {
         const created = await User.create({prenom: usr.prenom, nom: usr.nom , email: usr.email, phone: usr.phone, bDate: usr.bDate,
