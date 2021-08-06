@@ -212,7 +212,7 @@ module.exports = {
                 listG = listG + s + ";"
             });
         }
-        listGerant=listGerant.slice(0, -1)
+        listG=listG.slice(0, -1)
         let newEntData = {}
         newEntData.nomE = entreprise.nomE
         newEntData.typeE = entreprise.typeE
