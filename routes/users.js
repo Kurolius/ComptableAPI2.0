@@ -114,7 +114,7 @@ router.post('/signup', async function(req, res, next) {
     }
   });
   
-  router.post('/ent/create',upload.array('CinImg',2000),async function(req, res, next) {
+  router.post('/ent/create',async function(req, res, next) {
     const id = req.body.id
     const token = req.body.token
     const flag = await usersRepo.verifToken(id,token)
