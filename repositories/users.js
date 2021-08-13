@@ -271,21 +271,27 @@ module.exports = {
             entreprise.listAssocies.forEach(s=>{
                 listNomPath = listNomPath + s + ";"
             });
+            listNomPath=listNomPath.slice(0, -1)
         }
-        listNomPath=listNomPath.slice(0, -1)
+        
         if(entreprise.listGerant){
             var listG = ""
             entreprise.listGerant.forEach(s=>{
                 listG = listG + s + ";"
             });
+            listG=listG.slice(0, -1)
         }
-        listG=listG.slice(0, -1)
+        
         let newEntData = {}
         newEntData.nomE = entreprise.nomE
         newEntData.typeE = entreprise.typeE
         newEntData.nbrAssocies = entreprise.nbrAssocies
-        newEntData.listAssocies = listNomPath
-        newEntData.listGerant = listG
+        if(entreprise.listAssocies){
+            newEntData.listAssocies = listNomPath
+        }
+        if(entreprise.listGerant){
+            newEntData.listGerant = listG
+        }
         newEntData.sectActi = entreprise.sectActi
         newEntData.capital = entreprise.capital
         newEntData.validationComptable = entreprise.validationComptable
