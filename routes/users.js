@@ -78,7 +78,23 @@ router.post('/signup', async function(req, res, next) {
       res.send("authentification error")
     }
   });
+  router.delete('/delete/admin', async function(req, res, next){
+    const id = req.body.id
+    const token = req.body.token
+    const idAS = req.body.idAS
+    const flag1 = await usersRepo.verifToken(id,token)
+    if(flag1){
+      const flag2 = await usersRepo.verifAdminRight(id,token)
+      if(flag2){
 
+        res.send(await usersRepo.deleteUserById(idAS));
+      }else{
+        res.send("you are not an admin")
+      }
+    }else{
+      res.send("authentification error")
+    }
+  });
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './CinImg');

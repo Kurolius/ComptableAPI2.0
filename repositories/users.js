@@ -127,6 +127,11 @@ module.exports = {
     async deleteUser(email) {
         const __user = await this.getUserByEmail(email)
         if (__user == null) return "user not found"
+        const __paper = await paperAdv.destroy({
+            where: {
+                UserId:__user.id
+            }});
+        if(!__paper) return "there is a error in paper destruction"
         await User.destroy({
             where: {
             id:__user.id
@@ -134,6 +139,19 @@ module.exports = {
             attributes:['id','prenom','nom', 'email', 'phone','bDate', 'role','createdAt','updatedAt']
         });
         return __user;
+    },
+    async deleteUserById(idu) {
+        const __paper = await paperAdv.destroy({
+            where: {
+                UserId:idu
+            }});
+        if(!__paper) return "there is a error in paper destruction"
+        return await User.destroy({
+            where: {
+            id:idu
+            },
+            attributes:['id','prenom','nom', 'email', 'phone','bDate', 'role','createdAt','updatedAt']
+        });
     },
     async verifToken(idu,token){
         var bytes  = CryptoJS.AES.decrypt(token, 'SuckMyDick');
