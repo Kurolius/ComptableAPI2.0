@@ -78,13 +78,10 @@ router.post('/signup', async function(req, res, next) {
       res.send("authentification error")
     }
   });
-  router.delete('/delete/admin', async function(req, res, next){
+  router.post('/delete/admin', async function(req, res, next){
     const id = req.body.id
     const token = req.body.token
     const idAS = req.body.idAS
-    console.log(id)
-    console.log(token)
-    console.log(idAS)
     const flag1 = await usersRepo.verifToken(id,token)
     if(flag1){
       const flag2 = await usersRepo.verifAdminRight(id,token)
