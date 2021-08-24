@@ -67,7 +67,7 @@ router.post('/signup', async function(req, res, next) {
     res.send(await usersRepo.changepass(user));
   });
 
-  router.delete('/delete', async function(req, res, next){
+  router.post('/delete', async function(req, res, next){
     const id = req.body.id
     const token = req.body.token
     const flag = await usersRepo.verifToken(id,token)
