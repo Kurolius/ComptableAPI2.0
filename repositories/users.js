@@ -127,7 +127,7 @@ module.exports = {
     async deleteUser(email) {
         const __user = await this.getUserByEmail(email)
         if (__user == null) return "user not found"
-        const __paper = await paperAdv.destroy({
+        const __paper = await PaperAdvancement.destroy({
             where: {
                 UserId:__user.id
             }});
@@ -141,7 +141,7 @@ module.exports = {
         return __user;
     },
     async deleteUserById(idu) {
-        const __paper = await paperAdv.destroy({
+        const __paper = await PaperAdvancement.destroy({
             where: {
                 UserId:idu
             }});
