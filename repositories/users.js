@@ -141,17 +141,19 @@ module.exports = {
         return __user;
     },
     async deleteUserById(idu) {
+        const __user = await this.getUserdata(idu);
         const __paper = await PaperAdvancement.destroy({
             where: {
                 UserId:idu
             }});
         if(!__paper) return "there is a error in paper destruction"
-        return await User.destroy({
+        await User.destroy({
             where: {
             id:idu
             },
             attributes:['id','prenom','nom', 'email', 'phone','bDate', 'role','createdAt','updatedAt']
         });
+        return __user;
     },
     async verifToken(idu,token){
         var bytes  = CryptoJS.AES.decrypt(token, 'SuckMyDick');
