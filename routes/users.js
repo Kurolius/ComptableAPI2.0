@@ -82,6 +82,7 @@ router.post('/signup', async function(req, res, next) {
     const id = req.body.id
     const token = req.body.token
     const idAS = req.body.idAS
+    console.log(token)
     const flag1 = await usersRepo.verifToken(id,token)
     if(flag1){
       const flag2 = await usersRepo.verifAdminRight(id,token)
