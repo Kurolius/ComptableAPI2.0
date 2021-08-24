@@ -146,7 +146,6 @@ module.exports = {
             where: {
                 UserId:idu
             }});
-        if(!__paper) return "there is a error in paper destruction"
         await User.destroy({
             where: {
             id:idu
