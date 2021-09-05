@@ -2,6 +2,17 @@ var express = require('express');
 var router = express.Router();
 const usersRepo = require('../repositories/users')
 const multer = require('multer');
+var nodemailer = require('nodemailer');
+
+var mail = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'your-email@gmail.com',
+    pass: 'your-gmail-password'
+  }
+});
+
+
 router.get('/user/:id', async function(req, res, next) {
   res.send(await usersRepo.getUserdata(req.params.id));
 });
@@ -17,6 +28,23 @@ router.post('/signup', async function(req, res, next) {
     user.password = req.body.password
     user.bDate = req.body.bDate
     user.role = "user"
+
+
+    var mailOptions = {
+      from: 'youremail@gmail.com',
+      to: user.email,
+      subject: 'Account verification',
+      text: 'put the msg here'
+    };
+      
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+
     res.send(await usersRepo.addUser(user));
     
   });
@@ -145,6 +173,23 @@ router.post('/signup', async function(req, res, next) {
       entreprise.sectActi = req.body.sectActi
       entreprise.capital = req.body.capital
       entreprise.validationComptable = "en cours"
+
+      var mailOptions = {
+        from: 'youremail@gmail.com',
+        to: 'put Comptable email here',
+        subject: 'New Account created ',
+        text: 'put the msg here'
+      };
+        
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
+
       res.send(await usersRepo.updateEnt(entreprise));
     }else{
       res.send("authentification error")
