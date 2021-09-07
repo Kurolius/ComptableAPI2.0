@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "5j7esVNvxk",
-    "password": "eX4yT9sYhe",
-    "database": "5j7esVNvxk",
-    "host": "remotemysql.com",
+    "username": "sql11435270",
+    "password": "DFF1a6ubgq",
+    "database": "sql11435270",
+    "host": "sql11.freemysqlhosting.net",
     "dialect": "mysql"
   },
   "test": {
-    "username": "5j7esVNvxk",
-    "password": "eX4yT9sYhe",
-    "database": "5j7esVNvxk",
-    "host": "remotemysql.com",
+    "username": "sql11435270",
+    "password": "DFF1a6ubgq",
+    "database": "sql11435270",
+    "host": "sql11.freemysqlhosting.net",
     "dialect": "mysql"
   },
   "production": {
-    "username": "5j7esVNvxk",
-    "password": "eX4yT9sYhe",
-    "database": "5j7esVNvxk",
-    "host": "remotemysql.com",
+    "username": "sql11435270",
+    "password": "DFF1a6ubgq",
+    "database": "sql11435270",
+    "host": "sql11.freemysqlhosting.net",
     "dialect": "mysql"
   }
 }
