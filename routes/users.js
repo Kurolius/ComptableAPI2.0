@@ -3,7 +3,7 @@ var router = express.Router();
 const usersRepo = require('../repositories/users')
 const multer = require('multer');
 var nodemailer = require('nodemailer');
-
+/*
 var mail = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -11,7 +11,7 @@ var mail = nodemailer.createTransport({
     pass: 'your-gmail-password'
   }
 });
-
+*/
 
 router.get('/user/:id', async function(req, res, next) {
   res.send(await usersRepo.getUserdata(req.params.id));
@@ -29,7 +29,7 @@ router.post('/signup', async function(req, res, next) {
     user.bDate = req.body.bDate
     user.role = "user"
 
-
+    /*
     var mailOptions = {
       from: 'youremail@gmail.com',
       to: user.email,
@@ -43,7 +43,7 @@ router.post('/signup', async function(req, res, next) {
       } else {
         console.log('Email sent: ' + info.response);
       }
-    });
+    });*/
 
     res.send(await usersRepo.addUser(user));
     
@@ -174,7 +174,7 @@ router.post('/signup', async function(req, res, next) {
       entreprise.capital = req.body.capital
       entreprise.validationComptable = "en cours"
 
-      var mailOptions = {
+      /*var mailOptions = {
         from: 'youremail@gmail.com',
         to: 'put Comptable email here',
         subject: 'New Account created ',
@@ -187,7 +187,7 @@ router.post('/signup', async function(req, res, next) {
         } else {
           console.log('Email sent: ' + info.response);
         }
-      });
+      });*/
 
 
       res.send(await usersRepo.updateEnt(entreprise));
