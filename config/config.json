@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "sql11435270",
-    "password": "DFF1a6ubgq",
-    "database": "sql11435270",
-    "host": "sql11.freemysqlhosting.net",
+    "username": "comptableapi",
+    "password": "ILoveMySql123",
+    "database": "comptableapi",
+    "host": "db4free.net",
     "dialect": "mysql"
   },
   "test": {
-    "username": "sql11435270",
-    "password": "DFF1a6ubgq",
-    "database": "sql11435270",
-    "host": "sql11.freemysqlhosting.net",
+    "username": "comptableapi",
+    "password": "ILoveMySql123",
+    "database": "comptableapi",
+    "host": "db4free.net",
     "dialect": "mysql"
   },
   "production": {
-    "username": "sql11435270",
-    "password": "DFF1a6ubgq",
-    "database": "sql11435270",
-    "host": "sql11.freemysqlhosting.net",
+    "username": "comptableapi",
+    "password": "ILoveMySql123",
+    "database": "comptableapi",
+    "host": "db4free.net",
     "dialect": "mysql"
   }
 }
